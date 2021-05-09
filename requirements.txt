@@ -1,0 +1,7 @@
+django
+pyjwt
+pillow
+djangorestframework
+django-cors-headers
+drf-yasg
+django-baton
