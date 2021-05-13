@@ -25,3 +25,8 @@ Go to Search -> type "env" -> Edit the system environment variables -> Environme
 ```
 python manage.py runserver
 ```
+
+## Usage
+
+- Swagger UI at `http://localhost:8000/swagger/`
+- Redoc UI at `http://localhost:8000/redoc/`
