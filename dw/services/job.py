@@ -1,7 +1,19 @@
 from dw.models import Job
+import math
 
-def in_range(my_lat, my_long, job_lat, job_long, radius):
-    return (job_lat - my_lat) ** 2 + (job_long - my_long) <= radius ** 2
+def in_range(lat1, lon1, lat2, lon2, radius):
+    R = 6378.137 # radius of earth in km
+    d_lat = lat1 * math.pi / 180 - lat2 * math.pi / 180
+    d_long = lon1 * math.pi / 180 - lon2 * math.pi / 180
+
+    a = math.sin(d_lat / 2) ** 2 + \
+        math.cos(lat1 * math.pi / 180) * math.cos(lat2 * math.pi / 180) * \
+        math.sin(d_long / 2) ** 2
+    
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    d = R * c
+
+    return d <= radius
 
 def get_job(*, id: int):
     return Job.objects.filter(id=id).first()
